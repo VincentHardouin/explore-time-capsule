@@ -1,7 +1,9 @@
 <template>
   <div>
-    <h1>{{ this.slug }}</h1>
-    <h2>{{ this.files }}</h2>
+    <h1>{{ slug }}</h1>
+    <div class="files">
+      <File v-for="file in files" :key="file.name" :file="file" />
+    </div>
   </div>
 </template>
 
@@ -14,3 +16,10 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.files {
+  display: flex;
+  flex-wrap: wrap;
+}
+</style>
