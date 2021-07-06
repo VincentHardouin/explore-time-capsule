@@ -14,6 +14,8 @@ function buildEnv() {
       host: process.env.HOST || 'localhost',
       logger: true,
     },
+
+    timeCapsulePath: process.env.TIME_CAPSULE_PATH || '/Users/',
   };
 
   if (process.env.NODE_ENV === 'test') {

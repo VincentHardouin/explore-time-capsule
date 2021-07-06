@@ -1,8 +1,9 @@
 const fs = require('fs');
 const bytes = require('bytes');
+const environment = require('../../../config/environment');
 
 module.exports = async ({ path }) => {
-  const dir = `./${path}`;
+  const dir = `${environment.timeCapsulePath}/${path}`;
   console.log(dir);
 
   const filenames = await fs.readdirSync(dir);
