@@ -6,9 +6,11 @@
     <div class="file__name">
       {{ file.name }}
     </div>
-    <div class="file__size">
-      {{ file.size }}
-    </div>
+    <template v-if="!file.isDirectory">
+      <div class="file__size">
+        {{ file.size }}
+      </div>
+    </template>
   </nuxt-link>
 </template>
 
@@ -20,13 +22,19 @@ export default {
       type: Object,
       required: true,
     },
+    path: {
+      type: String,
+      required: true,
+    },
   },
   computed: {
     icon() {
       return this.file.isDirectory ? '/folder.png' : '/file.png';
     },
     url() {
-      return this.file.isDirectory ? `/${this.file.name}` : '/';
+      return this.file.isDirectory
+        ? `/?path=${this.path}/${this.file.name}`
+        : '/';
     },
   },
 };
@@ -52,7 +60,11 @@ export default {
 
   &__name,
   &__size {
+    width: 100%;
     text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
 }
 </style>
