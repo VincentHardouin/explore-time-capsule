@@ -1,12 +1,13 @@
 const fs = require('fs');
 const bytes = require('bytes');
 
-module.exports = async () => {
-  const dir = './';
+module.exports = async ({ path }) => {
+  const dir = `./${path}`;
+  console.log(dir);
 
   const filenames = await fs.readdirSync(dir);
   const files = filenames.map((filename) => {
-    const stats = fs.statSync(`${dir}${filename}`);
+    const stats = fs.statSync(`${dir}/${filename}`);
 
     return {
       name: filename,
