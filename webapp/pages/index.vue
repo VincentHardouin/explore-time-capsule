@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{ slug }}</h1>
+    <h1>{{ path }}</h1>
     <div class="files">
       <File v-for="file in files" :key="file.name" :file="file" />
     </div>
@@ -9,9 +9,9 @@
 
 <script>
 export default {
-  async asyncData({ params, $axios }) {
-    const slug = params.slug ? params.slug : '';
-    const files = await $axios.$get('/api/files', { params: { path: slug } });
+  async asyncData({ query, $axios }) {
+    const path = query.path ? query.path : '';
+    const files = await $axios.$get('/api/files', { params: { path } });
     return { slug, files };
   },
 };
