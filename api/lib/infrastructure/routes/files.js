@@ -6,7 +6,7 @@ module.exports = function (fastify, options, done) {
     url: '/files',
     handler: async function (request, reply) {
       const files = await useCases.getFiles();
-      reply.code(201).send(files);
+      reply.code(200).send(files);
     },
   });
   done();
