@@ -10,9 +10,9 @@
 <script>
 export default {
   async asyncData({ params, $axios }) {
-    const slug = params.slug ? params.slug : '/';
-    const response = await $axios.get('/api/files');
-    return { slug, files: response.data };
+    const slug = params.slug ? params.slug : '';
+    const files = await $axios.$get('/api/files', { params: { path: slug } });
+    return { slug, files };
   },
 };
 </script>
