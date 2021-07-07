@@ -1,14 +1,15 @@
+const path = require('path');
 const fs = require('fs');
 const bytes = require('bytes');
 const environment = require('../../../config/environment');
 
-module.exports = async ({ path }) => {
-  const dir = `${environment.timeCapsulePath}/${path}`;
+module.exports = async ({ pathname }) => {
+  const dir = path.join(environment.timeCapsulePath, pathname);
   console.log(dir);
 
   const filenames = await fs.readdirSync(dir);
   const files = filenames.map((filename) => {
-    const stats = fs.statSync(`${dir}/${filename}`);
+    const stats = fs.statSync(path.join(dir, filename));
 
     return {
       name: filename,
