@@ -5,7 +5,6 @@ const environment = require('../../../config/environment');
 
 module.exports = async ({ pathname }) => {
   const dir = path.join(environment.timeCapsulePath, pathname);
-  console.log(dir);
 
   const filenames = await fs.readdirSync(dir);
   const files = filenames.map((filename) => {
@@ -16,8 +15,21 @@ module.exports = async ({ pathname }) => {
       extension: stats.isFile() ? filename.split('.').pop() : undefined,
       size: bytes(stats.size),
       isDirectory: stats.isDirectory(),
+      path: pathname,
     };
   });
-  files.forEach(console.log);
+
+  if (pathname !== '') {
+    const prevDirectory = {
+      name: '...',
+      extension: undefined,
+      size: 0,
+      isDirectory: true,
+      path: path.join(pathname, '..'),
+    };
+
+    files.unshift(prevDirectory);
+  }
+
   return files;
 };
