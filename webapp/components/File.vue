@@ -30,24 +30,23 @@ export default {
       type: Object,
       required: true,
     },
-    path: {
-      type: String,
-      required: true,
-    },
   },
   computed: {
     icon() {
       return this.file.isDirectory ? '/folder.png' : '/file.png';
     },
     url() {
-      return this.file.isDirectory
-        ? `/?path=${this.path}/${this.file.name}`
-        : `/api/files/download?path=${this.path}/${this.file.name}`;
+      return this.file.name === '...'
+        ? `/?path=${this.file.path}`
+        : `/?path=${this.file.path}/${this.file.name}`;
+    },
+    urlForDownload() {
+      return `/api/files/download?path=${this.file.path}/${this.file.name}`;
     },
   },
   methods: {
     async download() {
-      const result = await this.$axios.$get(this.url);
+      const result = await this.$axios.$get(this.urlForDownload);
       fileDownload(result, this.file.name);
     },
   },

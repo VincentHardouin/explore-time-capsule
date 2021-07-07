@@ -2,7 +2,7 @@
   <div>
     <h1>{{ path }}</h1>
     <div class="files">
-      <File v-for="file in files" :key="file.name" :file="file" :path="path" />
+      <File v-for="file in files" :key="file.name" :file="file" />
     </div>
   </div>
 </template>
