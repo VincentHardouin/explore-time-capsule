@@ -1,20 +1,28 @@
 <template>
-  <nuxt-link :to="url" class="file">
+  <nuxt-link v-if="file.isDirectory" :to="url" class="file">
     <div class="file__icon">
       <img :src="icon" />
     </div>
     <div class="file__name">
       {{ file.name }}
     </div>
-    <template v-if="!file.isDirectory">
-      <div class="file__size">
-        {{ file.size }}
-      </div>
-    </template>
   </nuxt-link>
+  <div v-else class="file" @click="download">
+    <div class="file__icon">
+      <img :src="icon" />
+    </div>
+    <div class="file__name">
+      {{ file.name }}
+    </div>
+    <div class="file__size">
+      {{ file.size }}
+    </div>
+  </div>
 </template>
 
 <script>
+import fileDownload from 'js-file-download';
+
 export default {
   name: 'File',
   props: {
@@ -34,7 +42,13 @@ export default {
     url() {
       return this.file.isDirectory
         ? `/?path=${this.path}/${this.file.name}`
-        : '/';
+        : `/api/files/download?path=${this.path}/${this.file.name}`;
+    },
+  },
+  methods: {
+    async download() {
+      const result = await this.$axios.$get(this.url);
+      fileDownload(result, this.file.name);
     },
   },
 };
