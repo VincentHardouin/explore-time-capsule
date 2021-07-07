@@ -5,7 +5,10 @@ module.exports = function (fastify, options, done) {
     method: 'GET',
     url: '/files',
     handler: async function (request, reply) {
-      const path = request.query?.path ?? '';
+      let path = '/';
+      if (request.query?.path) {
+        path = request.query.path;
+      }
       const files = await useCases.getFiles({ pathname: path });
       return reply.code(200).send(files);
     },
@@ -15,7 +18,7 @@ module.exports = function (fastify, options, done) {
     method: 'GET',
     url: '/files/download',
     handler: async function (request, reply) {
-      const path = request.query?.path ?? '';
+      const path = request.query?.path ?? '/';
       return reply.download(path, { dotfiles: 'allow' });
     },
   });

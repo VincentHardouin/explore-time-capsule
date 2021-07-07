@@ -19,7 +19,7 @@ module.exports = async ({ pathname }) => {
     };
   });
 
-  if (pathname !== '') {
+  if (pathname !== '/') {
     const prevDirectory = {
       name: '...',
       extension: undefined,
