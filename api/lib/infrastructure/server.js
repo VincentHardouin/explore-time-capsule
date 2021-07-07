@@ -1,6 +1,7 @@
-const { logger, port, host } = require('../../config/environment').server;
+const environment = require('../../config/environment');
+const { logger, port, host } = environment.server;
 
-const server = require('./app')({ logger });
+const server = require('./app')({ logger, path: environment.timeCapsulePath });
 
 module.exports = {
   server,

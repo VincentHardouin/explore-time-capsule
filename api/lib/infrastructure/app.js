@@ -1,3 +1,5 @@
+const path = require('path');
+
 function build(opts = {}) {
   // See https://nodejs.org/api/net.html#net_server_listen_options_callback
   const fastify = require('fastify')({
@@ -7,6 +9,12 @@ function build(opts = {}) {
   // https://github.com/fastify/fastify-cors
   fastify.register(require('fastify-cors'), {
     origin: '*',
+  });
+
+  console.log(opts.path);
+
+  fastify.register(require('fastify-static'), {
+    root: path.join(opts.path),
   });
 
   fastify.after(() => {

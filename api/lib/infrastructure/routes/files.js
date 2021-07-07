@@ -10,5 +10,15 @@ module.exports = function (fastify, options, done) {
       reply.code(200).send(files);
     },
   });
+
+  fastify.route({
+    method: 'GET',
+    url: '/files/download',
+    handler: async function (request, reply) {
+      const path = request.query?.path ?? '';
+      return reply.download(path, { dotfiles: 'allow' });
+    },
+  });
+
   done();
 };
