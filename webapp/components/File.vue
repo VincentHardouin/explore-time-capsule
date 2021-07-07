@@ -1,6 +1,6 @@
 <template>
   <nuxt-link v-if="file.isDirectory" :to="url" class="file">
-    <div class="file__icon">
+    <div class="file__icon file__icon--directory">
       <img :src="icon" />
     </div>
     <div class="file__name">
@@ -8,7 +8,7 @@
     </div>
   </nuxt-link>
   <div v-else class="file" @click="download">
-    <div class="file__icon">
+    <div class="file__icon file__icon--file">
       <img :src="icon" />
     </div>
     <div class="file__name">
@@ -59,15 +59,45 @@ export default {
   height: 100px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: center;
+  cursor: default;
+  text-decoration: none;
+  color: #111827;
+
+  &:visited {
+    color: #111827;
+  }
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: 0.5s ease-in;
+  }
 
   &__icon {
     width: 50px;
-    height: 50px;
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
     img {
       width: 100%;
+    }
+
+    &--directory {
+      img {
+        height: 40px;
+      }
+    }
+
+    &--file {
+      img {
+        width: 32px;
+        height: 40px;
+      }
     }
   }
 
@@ -78,6 +108,10 @@ export default {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+  }
+
+  &__size {
+    font-size: 11px;
   }
 }
 </style>
