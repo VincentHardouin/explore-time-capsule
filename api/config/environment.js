@@ -16,6 +16,8 @@ function buildEnv() {
     },
 
     timeCapsulePath: process.env.TIME_CAPSULE_PATH || '/Users/',
+
+    timeCapsule: require('./time-capsule.json'),
   };
 
   if (process.env.NODE_ENV === 'test') {

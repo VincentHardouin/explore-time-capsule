@@ -19,6 +19,7 @@ function build(opts = {}) {
 
   fastify.after(() => {
     fastify.register((instance, opts, done) => {
+      fastify.register(require('./routes/configurations'));
       fastify.register(require('./routes/files'));
       done();
     });
