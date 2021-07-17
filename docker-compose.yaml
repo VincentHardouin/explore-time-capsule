@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+
+  api:
+    container_name: explore_tc_api
+    build:
+      context: ./api
+    volumes:
+      - ./api:/src
+      - /mnt/timecapsule:/timecapsule
+    ports:
+      - "6001:3000"
+    environment:
+      NODE_ENV: development
+      TIME_CAPSULE_PATH: /timecapsule
+
+  webapp:
+    container_name: explore_tc_webapp
+    build:
+      context: ./webapp
+    volumes:
+      - ./webapp:/src
+    ports:
+      - "6002:3000"
+    environment:
+      NODE_ENV: development

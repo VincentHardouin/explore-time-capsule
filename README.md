@@ -9,16 +9,16 @@ This project allows you to access to your Time Capsule from internet.
 
 ## Installation 
 
-1. Mount Time Capsule in your Raspberry : 
-
-```shell
-sudo npm run install
-```
-
-  2. Clone project and move on it: 
+1. Clone project and move on it: 
 ```shell
 git clone git@github.com:VincentHardouin/explore-time-capsule.git
 cd explore-time-capsule
+```
+
+2. Mount Time Capsule in your Raspberry :
+
+```shell
+sudo npm run install
 ```
 
 2. Run project in Docker with :
