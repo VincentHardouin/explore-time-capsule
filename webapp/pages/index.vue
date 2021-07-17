@@ -10,31 +10,11 @@
       </div>
     </template>
     <template v-else>
-      <div class="form">
-        <div class="form__title">
-          Veuillez remplir ce formulaire, pour utiliser l'application :
+      <div class="information">
+        <div class="information__title">
+          Veuillez lancer le script d'installation ("sudo npm run install") puis
+          relancez à nouveau les containers.
         </div>
-        <form class="form__fields" @submit.prevent="saveConfig">
-          <label for="address">Adresse IP de la Time Capsule :</label>
-          <input
-            id="address"
-            v-model="address"
-            type="text"
-            placeholder="Adresse IP"
-          />
-          <label for="password">
-            Mot de passe du disque de la Time Capsule :
-          </label>
-          <input
-            id="password"
-            v-model="password"
-            type="password"
-            placeholder="Mot de passe"
-          />
-          <div class="form__button">
-            <button type="submit">Sauvegarder la configuration</button>
-          </div>
-        </form>
       </div>
     </template>
   </div>
@@ -51,22 +31,7 @@ export default {
     const files = await $axios.$get('/api/files', { params: { path } });
     return { path, files, isConfig };
   },
-  data() {
-    return {
-      address: '',
-      password: '',
-    };
-  },
   watchQuery: ['path'],
-  methods: {
-    async saveConfig() {
-      await this.$axios.$post('/api/configurations', {
-        address: this.address,
-        password: this.password,
-      });
-      this.$router.app.refresh();
-    },
-  },
 };
 </script>
 
@@ -97,55 +62,15 @@ body {
   gap: 8px;
 }
 
-.form {
-  width: 600px;
-  margin: 24px auto;
+.information {
+  width: 100%;
+  text-align: center;
 
   &__title {
+    height: 40px;
     font-size: 20px;
     font-family: 'Roboto', arial, sans-serif;
-    font-weight: 600;
-    margin-bottom: 14px;
-  }
-
-  &__fields {
-    display: flex;
-    flex-direction: column;
-
-    label {
-      margin-bottom: 14px;
-      font-size: 14px;
-      font-family: 'Roboto', arial, sans-serif;
-    }
-
-    input {
-      height: 30px;
-      margin-bottom: 14px;
-      font-family: 'Roboto', arial, sans-serif;
-      font-size: 14px;
-      line-height: 18px;
-    }
-  }
-
-  &__button {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-
-    button {
-      height: 30px;
-      width: 300px;
-      background-color: #4348ca;
-      border: none;
-      color: #fff;
-      font-family: 'Roboto', arial, sans-serif;
-      font-size: 16px;
-      line-height: 20px;
-
-      &:hover {
-        cursor: pointer;
-      }
-    }
+    font-weight: 700;
   }
 }
 </style>
