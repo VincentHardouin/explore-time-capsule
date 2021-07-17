@@ -17,7 +17,7 @@ function buildEnv() {
 
     timeCapsule: {
       ...require('./time-capsule.json'),
-      path: process.env.TIME_CAPSULE_PATH || '/Users/',
+      path: process.env.TIME_CAPSULE_PATH || '/mnt/timecapsule/',
     },
   };
 
