@@ -4,7 +4,7 @@ const bytes = require('bytes');
 const environment = require('../../../config/environment');
 
 module.exports = async ({ pathname }) => {
-  const dir = path.join(environment.timeCapsulePath, pathname);
+  const dir = path.join(environment.timeCapsule.path, pathname);
 
   const filenames = await fs.readdirSync(dir);
   const files = filenames.map((filename) => {
