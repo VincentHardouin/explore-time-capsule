@@ -22,7 +22,7 @@ async function saveConfig({ address, password }) {
   await fs.writeFileSync(configPath, JSON.stringify({ address, password }));
 }
 
-async function install() {
+async function configure() {
   try {
     const answers = await inquirer.prompt(questions);
     await exec('mkdir /mnt/timecapsule');
@@ -36,7 +36,7 @@ async function install() {
 }
 
 function main() {
-  install();
+  configure();
 }
 
 main();

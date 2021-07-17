@@ -12,7 +12,7 @@
     <template v-else>
       <div class="information">
         <div class="information__title">
-          Veuillez lancer le script d'installation ("sudo npm run install") puis
+          Veuillez lancer le script d'installation ("sudo npm run connfigure") puis
           relancez à nouveau les containers.
         </div>
       </div>
