@@ -12,8 +12,7 @@ This project allows you to access to your Time Capsule from internet.
 1. Mount Time Capsule in your Raspberry : 
 
 ```shell
-sudo mkdir /mnt/timecapsule
-sudo mount.cifs //<Time Capsule Address>/Data /mnt/timecapsule/ -o password='<Time Capsule Disk Password>',sec=ntlm,vers=1.0
+sudo npm run install
 ```
 
   2. Clone project and move on it: 
