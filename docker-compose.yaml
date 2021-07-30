@@ -8,8 +8,6 @@ services:
     volumes:
       - ./time-capsule.json:/config/time-capsule.json
       - /mnt/timecapsule:/timecapsule
-    ports:
-      - "6001:3002"
     environment:
       NODE_ENV: production
       TIME_CAPSULE_PATH: /timecapsule
