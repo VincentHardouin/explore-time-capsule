@@ -18,7 +18,7 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       {
         rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Inter&family=Roboto:wght@400;500;600&display=swap',
+        href: 'https://fonts.googleapis.com/css2?family=DM+Sans&family=Roboto:wght@400;500;600&display=swap',
       },
     ],
   },
@@ -44,6 +44,7 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/style-resources',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -57,6 +58,10 @@ export default {
       target: process.env.API_URL || 'http://localhost:3002',
       pathRewrite: { '^/api/': '' },
     },
+  },
+
+  styleResources: {
+    scss: ['assets/scss/globals.scss'],
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

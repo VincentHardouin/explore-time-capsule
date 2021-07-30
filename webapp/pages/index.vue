@@ -12,8 +12,8 @@
     <template v-else>
       <div class="information">
         <div class="information__title">
-          Veuillez lancer le script d'installation ("sudo npm run connfigure") puis
-          relancez à nouveau les containers.
+          Veuillez lancer le script d'installation ("sudo npm run connfigure")
+          puis relancez à nouveau les containers.
         </div>
       </div>
     </template>
@@ -49,9 +49,13 @@ body {
   padding: 0 14px;
 
   &__title {
-    font-size: 36px;
-    font-family: 'Inter', arial, sans-serif;
-    font-weight: 800;
+    font-family: $font-dm-sans;
+    font-weight: 500;
+    font-size: 20px;
+
+    @include device-is('tablet') {
+      font-size: 36px;
+    }
   }
 }
 
