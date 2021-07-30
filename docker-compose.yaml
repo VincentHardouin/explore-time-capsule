@@ -18,7 +18,14 @@ services:
   webapp:
     container_name: explore_tc_webapp
     image: nidourah/explore-webapp
-    ports:
-      - "6002:3000"
     environment:
       API_URL: http://api:3002
+
+  nginx:
+    container_name: explore_tc_nginx
+    image: arm32v6/nginx
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./nginx/.htpasswd:/etc/nginx/.htpasswd:ro
+    ports:
+      - "6003:80"
