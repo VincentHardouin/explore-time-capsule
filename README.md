@@ -30,3 +30,10 @@ sudo npm run configure
 ```
 docker-compose up -d
 ```
+
+## Deployment 
+
+1. Use `docker buildx` to build image for arm 
+```
+docker buildx build --platform linux/arm/v6 -t nidourah/explore-webapp:latest --push .
+```
