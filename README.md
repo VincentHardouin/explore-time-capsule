@@ -15,15 +15,15 @@ git clone git@github.com:VincentHardouin/explore-time-capsule.git
 cd explore-time-capsule
 ```
 
-2. Install dependencies:
+2. Authorize script to be executed with your user :
 ```shell
-NODE_ENV=production npm install
+chmod 100 ./configure.sh
 ```
 
 3. Mount Time Capsule in your Raspberry :
 
 ```shell
-sudo npm run configure
+sudo ./configure.sh
 ```
 
 4. Run project in Docker with :

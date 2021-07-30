@@ -1,10 +1,7 @@
-FROM node:14-alpine as base
-COPY package*.json /
-RUN npm install --quiet
-
 FROM node:14-alpine as prod
+COPY package*.json /
 ENV NODE_ENV=production
-COPY --from=base ./ ./
+RUN npm install --quiet
 COPY . ./
 ENV HOST=0.0.0.0
 ARG PORT=3000

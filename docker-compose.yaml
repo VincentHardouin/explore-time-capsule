@@ -4,11 +4,10 @@ services:
 
   api:
     container_name: explore_tc_api
-    build:
-      context: ./api
+    image: nidourah/explore-api
     volumes:
-      - ./api:/src
-      - ~/Users/vincenthardouin/:/timecapsule
+      - ./time-capsule.json:/config/time-capsule.json
+      - /mnt/timecapsule:/timecapsule
     ports:
       - "6001:3002"
     environment:
@@ -18,10 +17,7 @@ services:
 
   webapp:
     container_name: explore_tc_webapp
-    build:
-      context: ./webapp
-    volumes:
-      - ./webapp:/src
+    image: nidourah/explore-webapp
     ports:
       - "6002:3000"
     environment:
