@@ -1,12 +1,14 @@
 FROM node:14-alpine as base
-WORKDIR /src
 COPY package*.json /
+RUN npm install --quiet
+
+FROM node:14-alpine as prod
+ENV NODE_ENV=production
+COPY --from=base ./ ./
+COPY . ./
+ENV HOST=0.0.0.0
 ARG PORT=3000
 ENV PORT $PORT
 EXPOSE $PORT
-
-FROM base as dev
-ENV NODE_ENV=development
-COPY . /src
-RUN npm install --quiet
-CMD ["npm", "run", "dev"]
+RUN npm run build
+CMD ["npm", "start"]

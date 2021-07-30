@@ -8,12 +8,13 @@ services:
       context: ./api
     volumes:
       - ./api:/src
-      - /mnt/timecapsule:/timecapsule
+      - ~/Users/vincenthardouin/:/timecapsule
     ports:
-      - "6001:3000"
+      - "6001:3002"
     environment:
-      NODE_ENV: development
+      NODE_ENV: production
       TIME_CAPSULE_PATH: /timecapsule
+      HOST: 0.0.0.0
 
   webapp:
     container_name: explore_tc_webapp
@@ -24,4 +25,4 @@ services:
     ports:
       - "6002:3000"
     environment:
-      NODE_ENV: development
+      API_URL: http://api:3002
